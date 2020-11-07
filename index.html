@@ -10,11 +10,25 @@
     <script>
         $(document).ready(function(){
             
-            $("button").on("click",function(){
+            $("button").on("click", gradeQuiz);
+            
+            function isFormValid() {
+                let isValid = true;
+                if ($("#q1").val() == "") {
+                    isValid = false;
+                    $("#validationFdbk").html("Question 1 was not answered");
+                }
+                return isValid;
+            }
+            
+            function gradeQuiz() {
                 
-                console.log($("#q1").val());
+                $("#validationFdbk").html("");
                 
-            });
+                if (!isFormValid()) {
+                    return;
+                }
+            }
         })
     </script>
     
@@ -26,6 +40,7 @@
     <h3>What is the capital of California?</h3>
     <input type="text" id="q1"/>
     <br><br>
+    <h3 id="validationFdbk" class="bg-danger text-white"></h3>
     <button class="btn btn-outline-success"> Submit Quiz </button>
 </body>
 </html>
