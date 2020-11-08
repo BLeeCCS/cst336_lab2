@@ -13,8 +13,13 @@
             
             var score = 0;
             var attempts = 0;
+            var correct = false;
             
             $("button").on("click", gradeQuiz);
+            
+            $("#button3").on("click", function() {
+                correct = true;
+            })
             
             $(".q5Choice").on("click", function() {
                $(".q5Choice").css("background","");
@@ -47,7 +52,7 @@
                 $(`#q${index}Feedback`).html("Correct!");
                 $(`#q${index}Feedback`).attr("class", "bg-success text-white");
                 $(`#markImg${index}`).html("<img src='img/checkmark.png'>");
-                score += 20;
+                score += 10;
             }
             
             function wrongAnswer(index) {
@@ -68,6 +73,10 @@
                 let q1Response = $("#q1").val().toLowerCase();
                 let q2Response = $("#q2").val()
                 let q4Response = $("input[name=q4]:checked").val();
+                let q7Response = $("#year").val();
+                let q8Response = $("#quantity").val();
+                let q9Response = $("#color").val();
+                let q10Response = $("#date").val();
                 
                 if (q1Response == "sacramento") {
                     rightAnswer(1);
@@ -98,6 +107,43 @@
                     rightAnswer(5);
                 } else {
                     wrongAnswer(5);
+                }
+                
+                if (correct) {
+                    rightAnswer(6);
+                } else {
+                    wrongAnswer(6);
+                }
+                
+                if (q7Response == 80) {
+                    rightAnswer(7);
+                } else {
+                    wrongAnswer(7);
+                }
+                
+                if (q8Response == 40) {
+                    rightAnswer(8);
+                } else {
+                    wrongAnswer(8);
+                }
+                
+                if (q9Response == "#ffffff") {
+                    rightAnswer(9);
+                } else {
+                    wrongAnswer(9);
+                }
+                
+                if (q10Response == "1850-09-09") {
+                    rightAnswer(10);
+                } else {
+                    wrongAnswer(10);
+                }
+                
+                if (score < 80) {
+                    $("#totalScore").css("color", "red")
+                } else {
+                    $("#totalScore").css("color", "green")
+                    $("#congrats").text("Congratulation on scoring above 80!!!")
                 }
                 
                 $("#totalScore").html(`Total Score: ${score}`);
@@ -151,13 +197,43 @@
     <div id = "q5Feedback"></div>
     <br><br>
     
+    <h3><span id="markImg6"></span>How many other U.S. states does California border?</h3>
+    <input type="button" id="button1" value=" 1 ">
+    <input type="button" id="button2" value=" 2 ">
+    <input type="button" id="button3" value=" 3 ">
+    <input type="button" id="button4" value=" 4 ">
+    <br><br>
+    <div id="q6Feedback"></div>
+    
+    <h3><span id="markImg7"></span>In 1906, how many % of the city of San Francistco destroyed by an earthquake?(0-80)</h3>
+    <input type="range" id="year" min="0" max="80">
+    <br><br>
+    <div id="q7Feedback"></div>
+    
+    <h3><span id="markImg8"></span>What is the approximate population of California?(10-40 million)</h3>
+    <input type="number" id="quantity" min="10" max="40">
+    <br><br>
+    <div id="q8Feedback"></div>
+    
+    <h3><span id="markImg9"></span>What is the major color in the California flag?</h3>
+    <input type="color" id="color">
+    <br><br>
+    <div id="q9Feedback"></div>
+    
+    <h3><span id="markImg10"></span>When was California granted statehood?</h3>
+    <input type="date" id="date">
+    <br><br>
+    <div id="q10Feedback"></div>
+    
     <h3 id="validationFdbk" class="bg-danger text-white"></h3>
     <button class="btn btn-outline-success"> Submit Quiz </button>
     <br>
     
-    <h2 id="totalScore" class="text-info"></h2>
+    <h2 id="totalScore"></h2>
     
     <h3 id="totalAttempts"></h3>
+    
+    <h3 id="congrats"></h3>
     
 </body>
 </html>
