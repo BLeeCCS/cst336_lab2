@@ -47,6 +47,7 @@
                 score = 0;
                 let q1Response = $("#q1").val().toLowerCase();
                 let q2Response = $("#q2").val()
+                let q4Response = $("input[name=q4]:checked").val();
                 
                 if (q1Response == "sacramento") {
                     rightAnswer(1);
@@ -66,6 +67,13 @@
                     }else {
                         wrongAnswer(3);
                     }
+                
+                if (q4Response == "Rhode Island") {
+                    rightAnswer(4);
+                } else {
+                    wrongAnswer(4);
+                }
+                
                 $("#totalScore").html(`Total Score: ${score}`);
             }
         })
@@ -103,9 +111,18 @@
     <div id="q3Feedback"></div>
     <br>
     
+    <h3><span id="markImg4"></span>What is the smallest US State?</h3>
+    <input type="radio" name="q4" id="me" value="Maine"> <label for="">Maine</label>
+    <input type="radio" name="q4" id="ri" value="Rhode Island"> <label for="">Rhode Island</label>
+    <input type="radio" name="q4" id="md" value="Maryland"> <label for="">Maryland</label>
+    <input type="radio" name="q4" id="de" value="Delaware"> <label for="">Delaware</label>
+    <div id="q4Feedback"></div>
+    <br><br>
+    
     <h3 id="validationFdbk" class="bg-danger text-white"></h3>
     <button class="btn btn-outline-success"> Submit Quiz </button>
     <br>
+    
     <h2 id="totalScore" class="text-info"></h2>
 </body>
 </html>
