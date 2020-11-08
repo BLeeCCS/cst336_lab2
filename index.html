@@ -12,6 +12,7 @@
         $(document).ready(function(){
             
             var score = 0;
+            var attempts = 0;
             
             $("button").on("click", gradeQuiz);
             
@@ -100,6 +101,8 @@
                 }
                 
                 $("#totalScore").html(`Total Score: ${score}`);
+                $("#totalAttempts").html(`Total Attempts: ${++attempts}`);
+                localStorage.setItem("total_attempts", attempts);
             }
         })
     </script>
@@ -153,5 +156,8 @@
     <br>
     
     <h2 id="totalScore" class="text-info"></h2>
+    
+    <h3 id="totalAttempts"></h3>
+    
 </body>
 </html>
