@@ -15,6 +15,11 @@
             
             $("button").on("click", gradeQuiz);
             
+            $(".q5Choice").on("click", function() {
+               $(".q5Choice").css("background","");
+               $(this).css("background", "rgb(255, 255, 0)");
+            });
+            
             displayQ4Choices();
             
             function displayQ4Choices() {
@@ -88,6 +93,12 @@
                     wrongAnswer(4);
                 }
                 
+                if ($("#seal2").css("background-color") == "rgb(255, 255, 0)") {
+                    rightAnswer(5);
+                } else {
+                    wrongAnswer(5);
+                }
+                
                 $("#totalScore").html(`Total Score: ${score}`);
             }
         })
@@ -128,6 +139,13 @@
     <h3><span id="markImg4"></span>What is the smallest US State?</h3>
     <div id="q4Choices"></div>
     <div id="q4Feedback"></div>
+    <br><br>
+    
+    <h3><span id="markImg5"></span>What image is in the Great Seal of the State of California?</h3>
+    <img src="img/seal1.png" alt="Seal 1" class="q5Choice" id="seal1">
+    <img src="img/seal2.png" alt="Seal 2" class="q5Choice" id="seal2">
+    <img src="img/seal3.png" alt="Seal 3" class="q5Choice" id="seal3">
+    <div id = "q5Feedback"></div>
     <br><br>
     
     <h3 id="validationFdbk" class="bg-danger text-white"></h3>
