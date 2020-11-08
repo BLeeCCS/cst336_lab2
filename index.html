@@ -7,12 +7,26 @@
     <title>US Geography Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script> 
     <script>
         $(document).ready(function(){
             
             var score = 0;
             
             $("button").on("click", gradeQuiz);
+            
+            displayQ4Choices();
+            
+            function displayQ4Choices() {
+                
+                let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
+                q4ChoicesArray=_.shuffle(q4ChoicesArray);
+                
+                for (let i=0; i < q4ChoicesArray.length; i++) {
+                    $("#q4Choices").append(`<input type="radio" name="q4" id="${q4ChoicesArray[i]}"
+                    value="${q4ChoicesArray[i]}"> <label for="${q4ChoicesArray[i]}"> ${q4ChoicesArray[i]}</label>`);
+                }
+            }
             
             function isFormValid() {
                 let isValid = true;
@@ -112,10 +126,7 @@
     <br>
     
     <h3><span id="markImg4"></span>What is the smallest US State?</h3>
-    <input type="radio" name="q4" id="me" value="Maine"> <label for="">Maine</label>
-    <input type="radio" name="q4" id="ri" value="Rhode Island"> <label for="">Rhode Island</label>
-    <input type="radio" name="q4" id="md" value="Maryland"> <label for="">Maryland</label>
-    <input type="radio" name="q4" id="de" value="Delaware"> <label for="">Delaware</label>
+    <div id="q4Choices"></div>
     <div id="q4Feedback"></div>
     <br><br>
     
